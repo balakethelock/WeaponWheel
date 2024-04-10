@@ -274,9 +274,9 @@ function WeaponWheelConfirmIconEdit()
 end
 
 function WeaponWheelActionToSpellicon(wheelID, actionID)
-	local _, _, spellname = strfind(WeaponWheelActions[wheelID][actionID], "CastSpellByName%(\"(.+)\"%)")
+	local _, _, spellname = strfind(WeaponWheelActions[wheelID][actionID], "CastSpellByName%(\"(.-)\"%)")
 	local _, _, spellid = strfind(WeaponWheelActions[wheelID][actionID], "%-%-spell%:(%d+)")
-	if spellid and SpellInfo then
+	if spellid and SpellInfo then -- If the user has the expanded API mod
 		local _, _, texture = SpellInfo(tonumber(spellid))
 		return texture
 	end
@@ -289,7 +289,7 @@ function WeaponWheelActionToSpellicon(wheelID, actionID)
 		while true do
 			local bookSpellName, bookSpellRank = GetSpellName(i, BOOKTYPE_SPELL);
 			if not bookSpellName then break end
-			if spellname == bookSpellName then
+			if strlower(spellname) == strlower(bookSpellName) then
 				return GetSpellTexture(i, BOOKTYPE_SPELL)
 			end
 			
