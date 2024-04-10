@@ -201,7 +201,7 @@ end
 function WeaponWheel_OnEvent(event)
 	if event == "VARIABLES_LOADED" then
 		if not WeaponWheelActions or not WeaponWheelIcons then
-			WeaponWheelInitializeSettings()
+			WeaponWheelInitializeProfile()
 		end
 		if not WeaponWheelScale then
 			WeaponWheelScale = 1.0
@@ -256,6 +256,12 @@ function WeaponWheelAction(arg)
 		if func then func() else DEFAULT_CHAT_FRAME:AddMessage("|cffcc3333ERROR: |cffff5555".. (errormessage or "nil" )) end
 		frame:Hide()
 	end
+end
+
+function WeaponWheelQuickAction(wheelID)
+	local loadedstring = WeaponWheelActions[wheelID][5]
+	local func, errormessage = loadstring(loadedstring)
+	if func then func() else DEFAULT_CHAT_FRAME:AddMessage("|cffcc3333ERROR: |cffff5555".. (errormessage or "nil" )) end
 end
 
 function WeaponWheelConfirmEdit()
