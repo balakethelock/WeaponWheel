@@ -1,0 +1,8 @@
+## Interface: 11200
+## Title: Weapon Wheel
+## Notes: Ring selection menu
+## Author: Balake
+## SavedVariables: WeaponWheelShowDelay, WeaponWheelMaxAlpha, WeaponWheelScale
+## SavedVariablesPerCharacter: WeaponWheelActions, WeaponWheelIcons, WeaponWheelHighlightColor
+
+WeaponWheel.xml

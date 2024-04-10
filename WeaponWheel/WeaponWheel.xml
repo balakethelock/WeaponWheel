@@ -1,0 +1,89 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+  <Script file="WeaponWheel.lua"/>
+	<Frame name="WeaponWheelTemplate" virtual="true">	
+		<Scripts>
+			<OnUpdate>
+				WeaponWheelTemplate_OnUpdate(arg1);
+			</OnUpdate>
+			<OnMouseUp>
+				WeaponWheelTemplate_OnClick(arg1);
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+	<EditBox name="WeaponWheelIconBox" letters="1000" autoFocus="false" inherits="InputBoxTemplate" hidden="true">
+		<Size>
+			<AbsDimension x="100" y="22"/>
+		</Size>
+		<Scripts>
+			<OnEscapePressed>
+				WeaponWheelConfirmIconEdit()
+			</OnEscapePressed>
+		</Scripts>
+		<FontString inherits="ChatFontNormal" font="Fonts\ARIALN.TTF">
+			<Color r="1" g="1" b="1"/>
+			<FontHeight>
+				<AbsValue val="14"/>
+			</FontHeight>
+		</FontString>
+	</EditBox>
+	<ScrollFrame name="WeaponWheelEditBox" frameStrata="DIALOG" inherits="UIPanelScrollFrameTemplate" hidden="true">
+		<Size>
+			<AbsDimension x="286" y="200"/>
+		</Size>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="0" right="0" top="0" bottom="0"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="4"/>
+			</EdgeSize>
+		</Backdrop>
+		<ScrollChild>
+			<EditBox name="WeaponWheelEditAction" multiLine="true" autoFocus="false">
+				<Size>
+					<AbsDimension x="286" y="200"/>
+				</Size>
+				<Scripts>
+					<OnTextChanged>
+						local scrollBar = getglobal(this:GetParent():GetName().."ScrollBar")
+						this:GetParent():UpdateScrollChildRect();
+						local min;
+						local max;
+						min, max = scrollBar:GetMinMaxValues();
+						if ( max > 0 and (this.max ~= max) ) then
+							this.max = max;
+							scrollBar:SetValue(max);
+						end
+					</OnTextChanged>
+					<OnEscapePressed>
+						WeaponWheelConfirmEdit()
+					</OnEscapePressed>
+				</Scripts>
+				<FontString inherits="GameFontHighlightSmall"/>
+			</EditBox>
+		</ScrollChild>
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+				this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 1);
+			</OnLoad>
+		</Scripts>
+	</ScrollFrame>
+  <Frame name="WeaponWheel">
+    <Scripts>
+			<OnLoad>
+				WeaponWheel_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				WeaponWheel_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				WeaponWheel_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+</Ui>

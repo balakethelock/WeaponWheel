@@ -1,0 +1,30 @@
+<Bindings>
+	<Binding name="WEAPONWHEEL1" runOnUp="true" header="WEAPONWHEEL_HEADER">
+		if ( keystate == "down" ) then
+			WeaponWheelShow(1)
+		else
+			WeaponWheelAction(1)
+		end
+	</Binding>
+	<Binding name="WEAPONWHEEL2" runOnUp="true" header="WEAPONWHEEL_HEADER">
+		if ( keystate == "down" ) then
+			WeaponWheelShow(2)
+		else
+			WeaponWheelAction(2)
+		end
+	</Binding>
+	<Binding name="WEAPONWHEEL3" runOnUp="true" header="WEAPONWHEEL_HEADER">
+		if ( keystate == "down" ) then
+			WeaponWheelShow(3)
+		else
+			WeaponWheelAction(3)
+		end
+	</Binding>
+	<Binding name="WEAPONWHEEL4" runOnUp="true" header="WEAPONWHEEL_HEADER">
+		if ( keystate == "down" ) then
+			WeaponWheelShow(4)
+		else
+			WeaponWheelAction(4)
+		end
+	</Binding>
+</Bindings>
